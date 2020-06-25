@@ -1,0 +1,67 @@
+---
+title: "R&RStudioRefresher_Week1"
+author: "AllysonSKelly"
+date: "5/18/2020"
+output:
+  word_document: default
+  html_document: default
+---
+#1  
+```{r}
+#install.packages(tidyverse)
+library(tidyverse)
+```
+
+#2  
+```{r}
+diamonddata = diamonds
+nrow(diamonddata)
+```
+
+#3  
+```{r}
+ggplot(diamonddata, aes(x = carat, y = price)) +geom_point()
+```  
+**as the carat increases, so does the price**
+
+#4  
+```{r}
+ggplot(diamonddata, aes(x = carat, y = price, color = cut)) + geom_point()
+```  
+**as the carat and quality of cut increase, so does the price**  
+
+#5  
+```{r}
+ggplot(diamonddata, aes(x = carat, y = price, color = cut)) + facet_wrap(~ color) + geom_point()
+```  
+**as the carat size, cut quality, and color quality increase, so does the price**  
+
+#6  
+```{r}
+inventory <- read.csv(file.choose(), header = TRUE)
+#inventory
+#names(inventory)
+```
+
+#7  
+```{r}
+inventoryA <- inventory %>% filter(Supplier == "A")
+#inventoryA
+```  
+**there are 3,695 rows in inventoryA.**  
+
+#8  
+```{r}
+inventoryA = mutate(inventoryA, OnHandRatio = `On.Hand`/ `Annual.Demand`)
+#inventoryA
+```  
+**it creates a new column containing the ratio of diamonds on hand to the annual demand**
+
+#9
+```{r}
+avg_cost <- inventory %>% group_by(Item.SKU) %>% summarize(SKUAvgCost = mean(Cost.per.Unit....))
+avg_cost
+```
+
+#10  
+**I found the importing a file to be the most challenging. I have never utilized R or RStudtio before so there was a bit of external research I had to conduct on my own.**
